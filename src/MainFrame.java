@@ -31,7 +31,7 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                
+                close();
             }
         });
     }
@@ -39,6 +39,11 @@ public class MainFrame extends JFrame{
     public static void main(String[] args) {
 
         MainFrame myFrame = new MainFrame();
+    }
+
+    public void close() {
+
+        System.exit(0);
     }
 
 
