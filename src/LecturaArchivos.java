@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * @author Marcelo Céspedes.
@@ -14,7 +16,7 @@ public class LecturaArchivos {
     /**
      * Método encargado de leer el archivo de "libros.txt".
      */
-    public static void leerArchivoLibros() {
+    public ArrayList leerArchivoLibros(ArrayList<Libro> Libro) {
 
         // Leer el archivo "libros.txt"
         try (BufferedReader br = new BufferedReader(new FileReader("libros.txt"))) {
@@ -26,28 +28,21 @@ public class LecturaArchivos {
                 String author = chain[2];
                 String category = chain[3];
                 int copies = Integer.parseInt(chain[4]);
-                int price = Integer.parseInt(chain[5]);
+                int stock = Integer.parseInt(chain[5]);
 
-                //TODO: Eliminar los print, solo están de prueba para saber si el archivo se leyó correctamente.
-                System.out.println("ISBN: " + isbn);
-                System.out.println("Título: " + title);
-                System.out.println("Autor: " + author);
-                System.out.println("Categoría: " + category);
-                System.out.println("Número de copias: " + copies);
-                System.out.println("Precio: " + price);
-                System.out.println("-----------------------------");
-
-                //TODO: Guardar el libro en algúna estructura de datos.
+                Libro libro = new Libro(isbn, title, author, category, copies, stock);
+                Libro.add(libro);
             }
         } catch (Exception e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
+        return Libro;
     }
 
     /**
      * Método encargado de leer el archivo de "usuarios.txt".
      */
-    public static void leerArchivoUsuarios() {
+    public ArrayList leerArchivoUsuarios(ArrayList<Usuario> Usuario) {
 
         // Leer el archivo "usuarios.txt"
         try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
@@ -59,17 +54,13 @@ public class LecturaArchivos {
                 String lastname = chain[2];
                 String password = chain[3];
 
-                //TODO: Eliminar los print, solo están de prueba para saber si el archivo se leyó correctamente.
-                System.out.println("RUT: " + rut);
-                System.out.println("Nombre: " + name);
-                System.out.println("Apellido: " + lastname);
-                System.out.println("Contraseña: " + password);
-                System.out.println("-----------------------------");
+                Usuario usuaio = new Usuario(rut, name, lastname, password);
+                Usuario.add(usuaio);
 
-                //TODO: Guardar el usuario en algúna estructura de datos.
             }
         } catch (Exception e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
+        return Usuario;
     }
 }
