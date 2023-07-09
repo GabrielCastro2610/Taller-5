@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class MainFrame extends JFrame{
     private JTextField tfRut;
@@ -47,7 +46,7 @@ public class MainFrame extends JFrame{
             if (!rut.isEmpty() && !contraseña.isEmpty()) {
                 for (Usuario u : listaUsuario) {
                     if (u.getRut().equals(rut) && u.getContraseña().equals(contraseña)) {
-                        MenuPrincpal menu = new MenuPrincpal();
+                        MenuPrincipal menu = new MenuPrincipal();
                         dispose();
                         //LinkedList<Usuario> usuarioActivo = new LinkedList<>();
                         //usuarioActivo.add(u);

@@ -1,0 +1,180 @@
+@startuml
+'https://plantuml.com/class-diagram
+left to right direction
+
+skin rose
+
+interface Sistema {
+
+ + MainFrame(): void
+
+}
+
+Sistema --> SistemaImpl
+
+class SistemaImpl {
+
++ MainFrame(): void
+
+}
+
+SistemaImpl --> LecturaArchivos
+SistemaImpl --> MainFrame
+
+class MainFrame {
+
+- tfRut: JTextField
+- btnIs: JButton
+- btnCp: JButton
+- tfContraseña: JPasswordField
+- mainPanel: JPanel
+
++ MainFrame()
++ Ingreso(): void
++ close(): void
+
+}
+
+MainFrame --> Usuario
+
+MainFrame ---|> JFrame: <<extends>>
+
+class MenuPrincipal {
+
+- buscarLibroButton: JButton
+- prestarLibroButton: JButton
+- agregarNuevoLibroButton: JButton
+- devolverLibroButton: JButton
+- menu: JPanel
+
++ MenuPrincipal()
+
+}
+
+MenuPrincipal --> BuscarLibro
+MenuPrincipal --> PrestarLibro
+MenuPrincipal --> AgregarLibro
+MenuPrincipal --> DevolverLibro
+
+MenuPrincipal ---|> JFrame: <<extends>>
+
+class LecturaArchivos {
+
++ leerArchivoLibros(Libro: ArrayList<Libro> ): Libro
++ leerArchivoUsuarios(Usuario: ArrayList<Usuario>): Usuario
+
+}
+
+LecturaArchivos --> Libro
+LecturaArchivos --> Usuario
+
+
+class Libro {
+
+- ISBN: String
+- titulo: String
+- autor: String
+- categoria: String
+- cantPaginas: int
+- stock: int
+
++ Libro(ISBN:String, titulo:String, autor:String, categoria:String, cantPaginas:int, stock:int): void
++ getISBN(): ISBN
++ getTitulo(): titulo
++ getAutor(): autor
++ getCategoria(): categoria
++ getCantPaginas(): cantPaginas
++ getStock(): stock
++ setStock(stock: int): void
++ toString(): String
+
+}
+
+class Usuario {
+
+- rut: String
+- nombre: String
+- apellido: String
+- contraseña: String
+
++ Usuario(rut:String, nombre:String, apellido:String, contraseña:String): void
++ getRut(): rut
++ getNombre(): nombre
++ getApellido(): apellido
++ getContraseña(): contraseña
++ toString(): String
+
+}
+
+Usuario --> MenuPrincipal
+
+class AgregarLibro {
+
+- campoISBN: JTextField
+- campoTitulo: JTextField
+- campoAutor: JTextField
+- campoCategoria: JTextField
+- campoPaginas: JTextField
+- campoStock: JTextField
+- agregarBoton: JButton
+- agregar: JPanel
+
++ agregarLibro()
++ agregarLibro(listaLibro: ArrayList<Libro>): void
+
+}
+
+AgregarLibro --> Libro
+AgregarLibro ---|> JFrame: <<extends>>
+
+class BuscarLibro {
+
+- campo: JTextField
+- Despliegue: JTextArea
+- busquedaLibro: JPanel
+- Buscar: JButton
+
++ BuscarLibro()
++ BuscarLibro(listaLibro: ArrayList<Libro>): void
+
+}
+
+BuscarLibro --> Libro
+BuscarLibro ---|> JFrame: <<extends>>
+
+class DevolverLibro {
+
+- panel1: JPanel
+- campoISBN: JTextField
+- devolver: JButton
+
++ DevolverLibro()
++ pedirLibro(listaLibro: ArrayList<Libro>): void
+
+}
+
+DevolverLibro --> Libro
+DevolverLibro ---|> JFrame: <<extends>>
+
+class PrestarLibro {
+
+- prestar: JPanel
+- campo: JTextField
+- boton: JButton
+
++ PrestarLibro()
++ PrestarLibro(listaLibro: ArrayList<Libro>): void
+
+}
+
+PrestarLibro --> Libro
+PrestarLibro ---|> JFrame: <<extends>>
+
+
+
+
+
+
+
+
+@enduml

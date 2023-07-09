@@ -2,14 +2,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuPrincpal extends JFrame {
+public class MenuPrincipal extends JFrame {
     private JButton buscarLibroButton;
     private JButton prestarLibroButton;
     private JButton agregarNuevoLibroButton;
     private JButton devolverLibroButton;
     private JPanel menu;
 
-    public MenuPrincpal(){
+    public MenuPrincipal(){
 
         setContentPane(menu);
         setTitle("Menu");

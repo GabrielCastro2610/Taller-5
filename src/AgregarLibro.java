@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class AgregarLibro extends JFrame {
-    private JTextField campoISBN;
+    private JTextField  campoISBN;
     private JTextField campoTitulo;
     private JTextField campoAutor;
     private JTextField campoCategoria;
