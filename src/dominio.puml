@@ -1,0 +1,43 @@
+@startuml
+left to right direction
+
+entity BiblioTech {}
+
+entity Sistema {}
+
+entity MenuInicial {
+
+BuscarLibro
+PrestarLibro
+AgregarLibro
+DevolverLibro
+Cerrar
+
+}
+
+entity Usuario {
+
+Rut
+Nombre
+Apellido
+Contraseña
+
+}
+
+entity Libros {
+
+ISBN
+Titulo
+Autor
+Categoria
+NumeroDeCopias
+
+}
+
+BiblioTech "0..1" -- "0..1" Sistema: Solicita un >
+Sistema "0..1" -- "0..1" MenuInicial: Tiene >
+Usuario "1..*" -- "0..1" Sistema: Tiene(n) acceso al >
+Usuario "1..*" -- "0..1" MenuInicial: Selecciona(n) del >
+Usuario "1..*" -- "1..*" Libros: Consigue por Menú >
+
+@enduml

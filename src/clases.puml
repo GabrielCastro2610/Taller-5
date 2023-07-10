@@ -170,11 +170,4 @@ class PrestarLibro {
 PrestarLibro --> Libro
 PrestarLibro ---|> JFrame: <<extends>>
 
-
-
-
-
-
-
-
 @enduml
