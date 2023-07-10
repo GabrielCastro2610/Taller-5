@@ -8,6 +8,7 @@ public class MenuPrincipal extends JFrame {
     private JButton agregarNuevoLibroButton;
     private JButton devolverLibroButton;
     private JPanel menu;
+    private JButton cerrarSesionButton;
 
     public MenuPrincipal(){
 
@@ -48,11 +49,17 @@ public class MenuPrincipal extends JFrame {
         devolverLibroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DevolverLibro devolverLibro = new DevolverLibro();
+                DevolverLibro DevolverLibro = new DevolverLibro();
                 dispose();
             }
         });
-
+        cerrarSesionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame inicio = new MainFrame();
+                dispose();
+            }
+        });
     }
 }
 

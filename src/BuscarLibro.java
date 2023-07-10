@@ -8,6 +8,7 @@ public class BuscarLibro extends JFrame {
     private JTextArea Despliegue;
     private JPanel busquedaLibro;
     private JButton Buscar;
+    private JButton volverButton;
 
     public BuscarLibro(){
 
@@ -21,27 +22,39 @@ public class BuscarLibro extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LecturaArchivos lectura = new LecturaArchivos();
-                ArrayList<Libro> listaLibro = new ArrayList<>();
-                lectura.leerArchivoLibros(listaLibro);
-                BuscarLibro(listaLibro);
+                ArrayList<Libro> archivo = new ArrayList<>();
+                lectura.leerArchivoLibros(archivo);
+                BuscarLibro(archivo);
+            }
+        });
+
+        volverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                MenuPrincipal menu = new MenuPrincipal();
+                dispose();
             }
         });
     }
 
-    public void BuscarLibro(ArrayList<Libro> listaLibro){
+    public void BuscarLibro(ArrayList<Libro> listaLibro) {
+        String isbn = campo.getText().trim();
 
         for (Libro aux : listaLibro) {
-
-            if (aux.getISBN().trim().equals(campo.getText().trim())) {
-                Despliegue.setText("Titulo: " + aux.getTitulo()
-                        +  "\nAutor: " + aux.getAutor()
+            if (aux.getISBN().trim().equals(isbn)) {
+                String resultado = "Título: " + aux.getTitulo()
+                        + "\nAutor: " + aux.getAutor()
                         + "\nCategoría: " + aux.getCategoria()
                         + "\nNúmero de copias: " + aux.getStock()
-                        + "\nNúmero de páginas: " + aux.getCantPaginas());
+                        + "\nNúmero de páginas: " + aux.getCantPaginas();
+
+                Despliegue.setText(resultado);
                 return;
             }
         }
 
-        JOptionPane.showMessageDialog(busquedaLibro, "ISBN Invalido");
+        JOptionPane.showMessageDialog(this, "ISBN inválido");
     }
+
 }

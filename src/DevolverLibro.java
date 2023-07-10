@@ -2,35 +2,60 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class DevolverLibro extends JFrame {
-    private JPanel panel1;
     private JTextField campoISBN;
-    private JButton devolver;
+    private JButton devolverButton;
+    private JPanel devolverPanel;
+    private JButton volverButton;
 
     public DevolverLibro() {
 
-        setContentPane(devolver);
+        setContentPane(devolverPanel);
         setTitle("Devolver Libro");
         setSize(450,400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        devolver.addActionListener(new ActionListener() {
+        devolverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LecturaArchivos lectura = new LecturaArchivos();
                 ArrayList<Libro> listaLibro = new ArrayList<>();
                 lectura.leerArchivoLibros(listaLibro);
-                DevolverLibro(listaLibro);
+                devolverLibro(listaLibro);
+            }
+        });
+
+        volverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                MenuPrincipal menu = new MenuPrincipal();
+                dispose();
             }
         });
 
     }
 
-    public void DevolverLibro(ArrayList<Libro> listaLibro){
+    public void devolverLibro(ArrayList<Libro> Libro) {
+        String isbn = campoISBN.getText().trim();
 
-        JOptionPane.showMessageDialog(devolver, "ISBN inválido");
+        for (Libro libro : Libro) {
+            if (libro.getISBN().trim().equals(campoISBN.getText().trim())) {
+
+                libro.setStock(libro.getStock() + 1);
+
+                LecturaArchivos lectura = new LecturaArchivos();
+                lectura.agregarLibro(Libro);
+
+               JOptionPane.showMessageDialog(this, "Devolución del libro '" + libro.getTitulo() + "' exitosa");
+
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(this, "ISBN inválido");
     }
+
 }

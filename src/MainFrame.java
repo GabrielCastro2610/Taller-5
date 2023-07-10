@@ -38,29 +38,25 @@ public class MainFrame extends JFrame{
     }
 
     public void Ingreso(ArrayList<Usuario> listaUsuario) {
-        try {
+        String rut = tfRut.getText().trim();
+        String contraseña = new String(tfContraseña.getPassword());
 
-            String rut = tfRut.getText();
-            String contraseña = new String(tfContraseña.getPassword());
-
-            if (!rut.isEmpty() && !contraseña.isEmpty()) {
-                for (Usuario u : listaUsuario) {
-                    if (u.getRut().equals(rut) && u.getContraseña().equals(contraseña)) {
-                        MenuPrincipal menu = new MenuPrincipal();
-                        dispose();
-                        //LinkedList<Usuario> usuarioActivo = new LinkedList<>();
-                        //usuarioActivo.add(u);
-                        System.out.println(u);
-                        return;
-                    }
+        if (!rut.isEmpty() && !contraseña.isEmpty()) {
+            for (Usuario u : listaUsuario) {
+                if (u.getRut().equals(rut) && u.getContraseña().equals(contraseña)) {
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    dispose();
+                    return;
                 }
-
-                JOptionPane.showMessageDialog(mainPanel, "Rut o contraseña inválido.");
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(mainPanel, "Campos invalidos, por favor vuelva a intentarlo");
+
+            JOptionPane.showMessageDialog(this, "Rut o contraseña inválido.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Campos inválidos, por favor vuelva a intentarlo.");
         }
     }
+
     public void close() {
 
         System.exit(0);

@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Marcelo Céspedes.
@@ -63,4 +62,27 @@ public class LecturaArchivos {
         }
         return Usuario;
     }
+
+    public static void agregarLibro(List<Libro> libro)
+    {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("libros.txt", true))){
+
+            for (Libro aux : libro) {
+                String linea = aux.getISBN() +
+                        ", " + aux.getTitulo() +
+                        ", " + aux.getAutor() +
+                        ", " + aux.getCategoria() +
+                        ", " + aux.getCantPaginas() +
+                        ", " + aux.getStock();
+                escritor.write(linea);
+                escritor.newLine();
+            }
+
+            escritor.close();
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo");
+        }
+
+    }
+
 }

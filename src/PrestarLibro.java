@@ -7,6 +7,7 @@ public class PrestarLibro extends JFrame {
     private JPanel prestar;
     private JTextField campo;
     private JButton boton;
+    private JButton volverButton;
 
     public PrestarLibro(){
         setContentPane(prestar);
@@ -24,14 +25,34 @@ public class PrestarLibro extends JFrame {
                 pedirLibro(listaLibro);
             }
         });
+
+        volverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                MenuPrincipal menu = new MenuPrincipal();
+                dispose();
+            }
+        });
     }
 
-    public void pedirLibro(ArrayList<Libro> listaLibro){
+    public void pedirLibro(ArrayList<Libro> listaLibro) {
+        String isbn = campo.getText().trim();
 
         for (Libro aux : listaLibro) {
-
+            if (aux.getISBN().equals(isbn)) {
+                if (aux.getStock() > 0) {
+                    JOptionPane.showMessageDialog(this, "Libro '" + aux.getTitulo() + "' prestado correctamente.");
+                    aux.setStock(aux.getStock() - 1);
+                    new LecturaArchivos().agregarLibro(listaLibro);
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(this, "No hay stock de este libro.");
+                    return;
+                }
+            }
         }
-        // Si no existe el ISBN de entrada de texto abre una ventana de error
-        JOptionPane.showMessageDialog(prestar, "Ingrese ISBN válido.");
+
+        JOptionPane.showMessageDialog(this, "Ingrese ISBN válido.");
     }
 }
