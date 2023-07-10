@@ -3,6 +3,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+/**
+ * Esta clase representa la interfaz gráfica para buscar un libro en el sistema.
+ */
 public class BuscarLibro extends JFrame {
     private JTextField campo;
     private JTextArea Despliegue;
@@ -10,8 +18,10 @@ public class BuscarLibro extends JFrame {
     private JButton Buscar;
     private JButton volverButton;
 
+    /**
+     * Constructor de la clase BuscarLibro.
+     */
     public BuscarLibro(){
-
         setContentPane(busquedaLibro);
         setTitle("Buscar Libro");
         setSize(450,400);
@@ -24,21 +34,25 @@ public class BuscarLibro extends JFrame {
                 LecturaArchivos lectura = new LecturaArchivos();
                 ArrayList<Libro> archivo = new ArrayList<>();
                 lectura.leerArchivoLibros(archivo);
-                BuscarLibro(archivo);
+                buscarLibro(archivo);
             }
         });
 
         volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 MenuPrincipal menu = new MenuPrincipal();
                 dispose();
             }
         });
     }
 
-    public void BuscarLibro(ArrayList<Libro> listaLibro) {
+    /**
+     * Busca un libro en la lista de libros.
+     *
+     * @param listaLibro La lista de libros existente.
+     */
+    public void buscarLibro(ArrayList<Libro> listaLibro) {
         String isbn = campo.getText().trim();
 
         for (Libro aux : listaLibro) {
@@ -58,3 +72,4 @@ public class BuscarLibro extends JFrame {
     }
 
 }
+

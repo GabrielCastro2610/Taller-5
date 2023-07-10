@@ -3,8 +3,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+/**
+ * Esta clase representa la interfaz gráfica para agregar un libro al sistema.
+ */
 public class AgregarLibro extends JFrame {
-    private JTextField  campoISBN;
+    private JTextField campoISBN;
     private JTextField campoTitulo;
     private JTextField campoAutor;
     private JTextField campoCategoria;
@@ -14,6 +22,9 @@ public class AgregarLibro extends JFrame {
     private JPanel agregar;
     private JButton volverAtrasButton;
 
+    /**
+     * Constructor de la clase AgregarLibro.
+     */
     public AgregarLibro(){
         setContentPane(agregar);
         setTitle("Agregar libro");
@@ -27,20 +38,25 @@ public class AgregarLibro extends JFrame {
                 LecturaArchivos archivo = new LecturaArchivos();
                 ArrayList<Libro> listaLibro = new ArrayList<>();
                 archivo.leerArchivoLibros(listaLibro);
-                AgregarLibro(listaLibro);
+                agregarLibro(listaLibro);
             }
         });
+
         volverAtrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 MenuPrincipal menu = new MenuPrincipal();
                 dispose();
             }
         });
     }
 
-    public void AgregarLibro(ArrayList<Libro> listaLibro) {
+    /**
+     * Agrega un libro a la lista de libros.
+     *
+     * @param listaLibro La lista de libros existente.
+     */
+    public void agregarLibro(ArrayList<Libro> listaLibro) {
         String isbn = campoISBN.getText().trim();
         String titulo = campoTitulo.getText().trim();
         String autor = campoAutor.getText().trim();
@@ -75,5 +91,4 @@ public class AgregarLibro extends JFrame {
             JOptionPane.showMessageDialog(this, "1 o más campos inválidos.");
         }
     }
-
 }

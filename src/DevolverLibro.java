@@ -3,14 +3,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+/**
+ * Esta clase representa la interfaz gráfica para devolver un libro del sistema.
+ */
 public class DevolverLibro extends JFrame {
     private JTextField campoISBN;
     private JButton devolverButton;
     private JPanel devolverPanel;
     private JButton volverButton;
 
+    /**
+     * Constructor de la clase DevolverLibro.
+     */
     public DevolverLibro() {
-
         setContentPane(devolverPanel);
         setTitle("Devolver Libro");
         setSize(450,400);
@@ -30,27 +40,28 @@ public class DevolverLibro extends JFrame {
         volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 MenuPrincipal menu = new MenuPrincipal();
                 dispose();
             }
         });
-
     }
 
-    public void devolverLibro(ArrayList<Libro> Libro) {
+    /**
+     * Realiza la devolución de un libro.
+     *
+     * @param listaLibro La lista de libros existente.
+     */
+    public void devolverLibro(ArrayList<Libro> listaLibro) {
         String isbn = campoISBN.getText().trim();
 
-        for (Libro libro : Libro) {
+        for (Libro libro : listaLibro) {
             if (libro.getISBN().trim().equals(campoISBN.getText().trim())) {
-
                 libro.setStock(libro.getStock() + 1);
 
                 LecturaArchivos lectura = new LecturaArchivos();
-                lectura.agregarLibro(Libro);
+                lectura.agregarLibro(listaLibro);
 
-               JOptionPane.showMessageDialog(this, "Devolución del libro '" + libro.getTitulo() + "' exitosa");
-
+                JOptionPane.showMessageDialog(this, "Devolución del libro '" + libro.getTitulo() + "' exitosa");
                 return;
             }
         }
@@ -59,3 +70,4 @@ public class DevolverLibro extends JFrame {
     }
 
 }
+

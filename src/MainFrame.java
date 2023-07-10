@@ -3,41 +3,55 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MainFrame extends JFrame{
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+/**
+ * Esta clase representa la interfaz gráfica principal de la aplicación.
+ */
+public class MainFrame extends JFrame {
     private JTextField tfRut;
     private JButton btnIs;
     private JButton btnCp;
     private JPasswordField tfContraseña;
     private JPanel mainPanel;
 
-    public MainFrame () {
-
+    /**
+     * Constructor de la clase MainFrame.
+     */
+    public MainFrame() {
         setContentPane(mainPanel);
         setTitle("Bienvenido");
         setSize(450,400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+
         btnIs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LecturaArchivos lectura = new LecturaArchivos();
                 ArrayList<Usuario> listaUsuario = new ArrayList<>();
                 lectura.leerArchivoUsuarios(listaUsuario);
-                Ingreso(listaUsuario);
+                ingresar(listaUsuario);
             }
-
-
         });
+
         btnCp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 close();
             }
         });
     }
 
-    public void Ingreso(ArrayList<Usuario> listaUsuario) {
+    /**
+     * Realiza el ingreso de un usuario.
+     *
+     * @param listaUsuario La lista de usuarios existente.
+     */
+    public void ingresar(ArrayList<Usuario> listaUsuario) {
         String rut = tfRut.getText().trim();
         String contraseña = new String(tfContraseña.getPassword());
 
@@ -57,12 +71,12 @@ public class MainFrame extends JFrame{
         }
     }
 
+    /**
+     * Cierra la aplicación.
+     */
     public void close() {
-
         System.exit(0);
     }
-
-
 }
 
 

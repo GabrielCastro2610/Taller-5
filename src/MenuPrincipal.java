@@ -2,6 +2,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * Esta clase representa la interfaz gráfica del menú principal de la aplicación.
+ */
 public class MenuPrincipal extends JFrame {
     private JButton buscarLibroButton;
     private JButton prestarLibroButton;
@@ -10,8 +17,10 @@ public class MenuPrincipal extends JFrame {
     private JPanel menu;
     private JButton cerrarSesionButton;
 
-    public MenuPrincipal(){
-
+    /**
+     * Constructor de la clase MenuPrincipal.
+     */
+    public MenuPrincipal() {
         setContentPane(menu);
         setTitle("Menu");
         setSize(450,400);
@@ -49,10 +58,12 @@ public class MenuPrincipal extends JFrame {
         devolverLibroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DevolverLibro DevolverLibro = new DevolverLibro();
+                DevolverLibro devolverLibro = new DevolverLibro();
                 dispose();
             }
         });
+
+        // Cerrar sesión
         cerrarSesionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,4 +73,5 @@ public class MenuPrincipal extends JFrame {
         });
     }
 }
+
 
